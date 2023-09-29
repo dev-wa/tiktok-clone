@@ -8,12 +8,36 @@ import Tippy from '@tippyjs/react/headless'; // different import path!
 import 'tippy.js/dist/tippy.css'; // optional
 import styles from './Header.module.scss';
 import images from '@/assets/images';
-import { faTimesCircle, faSpinner, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Wrapper as PopperWrapper } from '@/components/Popper';
+import {
+  faTimesCircle,
+  faSpinner,
+  faSearch,
+  faEllipsisVertical,
+  faEarthAsia,
+  faQuestionCircle,
+  faKeyboard,
+} from '@fortawesome/free-solid-svg-icons';
+import { Wrapper as PopperWrapper, Menu } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
 
 const cx = classname.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    title: 'English',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faQuestionCircle} />,
+    title: 'Feedback and help',
+    to: '/feedback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Keyboard shortcuts',
+  },
+];
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
@@ -57,9 +81,12 @@ function Header() {
         </Tippy>
         <div className={cx('actions')}>
           <Button text>Upload</Button>
-          <Button rounded className={cx('custom-login')}>
-            Log in
-          </Button>
+          <Button primary>Log in</Button>
+          <Menu data={MENU_ITEMS}>
+            <button className={cx('more-icon')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
