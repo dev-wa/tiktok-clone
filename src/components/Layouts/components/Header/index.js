@@ -6,18 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Tippy from '@tippyjs/react';
 import HeadLessTippy from '@tippyjs/react/headless';
-import 'tippy.js/dist/tippy.css'; // optional
+import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import images from '@/assets/images';
 import {
   faTimesCircle,
   faSpinner,
-  faSearch,
   faEllipsisVertical,
   faEarthAsia,
   faQuestionCircle,
   faKeyboard,
-  faCloudUpload,
   faUser,
   faCog,
   faDonate,
@@ -26,6 +24,8 @@ import {
 import { Wrapper as PopperWrapper, Menu } from '@/components/Popper';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
+import { SearchIcon, UploadIcon } from '@/components/Icons';
+import Image from '@/components/Image';
 
 const cx = classname.bind(styles);
 
@@ -40,21 +40,6 @@ const MENU_ITEMS = [
           type: 'languege',
           code: 'en',
           title: 'English',
-          children: {
-            title: 'Languege',
-            data: [
-              {
-                type: 'languege',
-                code: 'en',
-                title: 'English 2',
-              },
-              {
-                type: 'languege',
-                code: 'vi',
-                title: 'Tiếng việt 2',
-              },
-            ],
-          },
         },
         {
           type: 'languege',
@@ -151,7 +136,8 @@ function Header() {
             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
             <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faSearch} />
+              {/* <FontAwesomeIcon icon={faSearch} /> */}
+              <SearchIcon />
             </button>
           </div>
         </HeadLessTippy>
@@ -160,7 +146,7 @@ function Header() {
             <>
               <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <UploadIcon className={cx('action-upload')} />
                 </button>
               </Tippy>
             </>
@@ -172,10 +158,11 @@ function Header() {
           )}
           <Menu data={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 src="https://avatars.githubusercontent.com/u/21592?s=64&v=4"
                 className={cx('user-avatar')}
                 alt="Nguyen"
+                fallback="https://tinypng.com/images/example-orig.png"
               />
             ) : (
               <button className={cx('more-icon')}>
