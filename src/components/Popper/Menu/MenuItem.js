@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import 'tippy.js/dist/tippy.css';
 import styles from './Menu.module.scss';
 
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 
 const cx = classname.bind(styles);
 function MenuItem({ data, onClick }) {
