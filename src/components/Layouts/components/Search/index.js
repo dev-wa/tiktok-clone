@@ -51,43 +51,46 @@ function Search() {
     console.log('handleSubmit');
   };
   return (
-    <HeadLessTippy
-      visible={showResult && searchResult.length > 0}
-      interactive
-      render={(attrs) => (
-        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-          <PopperWrapper>
-            <h4 className={cx('search-title')}>Accounts</h4>
-            {searchResult.map((item, key) => (
-              <AccountItem key={key} data={item} />
-            ))}
-          </PopperWrapper>
-        </div>
-      )}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx('search')}>
-        <input
-          ref={refValue}
-          value={searchValue}
-          placeholder="Search account and videos"
-          spellCheck={false}
-          onChange={(e) => setSearchValue(e.target.value.trimStart())}
-          onFocus={() => setShowResult(true)}
-        />
-
-        {!!searchValue && !loading && (
-          <button className={cx('clear')} onClick={handleClearValue}>
-            <FontAwesomeIcon icon={faTimesCircle} />
-          </button>
+    // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+    <div>
+      <HeadLessTippy
+        interactive
+        visible={showResult && searchResult.length > 0}
+        render={(attrs) => (
+          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+              <h4 className={cx('search-title')}>Accounts</h4>
+              {searchResult.map((item, key) => (
+                <AccountItem key={key} data={item} />
+              ))}
+            </PopperWrapper>
+          </div>
         )}
-        {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={refValue}
+            value={searchValue}
+            placeholder="Search account and videos"
+            spellCheck={false}
+            onChange={(e) => setSearchValue(e.target.value.trimStart())}
+            onFocus={() => setShowResult(true)}
+          />
 
-        <button className={cx('search-btn')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
-          <SearchIcon className={cx('search-icon')} />
-        </button>
-      </div>
-    </HeadLessTippy>
+          {!!searchValue && !loading && (
+            <button className={cx('clear')} onClick={handleClearValue}>
+              <FontAwesomeIcon icon={faTimesCircle} />
+            </button>
+          )}
+          {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+
+          <button className={cx('search-btn')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
+            <SearchIcon className={cx('search-icon')} />
+          </button>
+        </div>
+      </HeadLessTippy>
+    </div>
   );
 }
 
