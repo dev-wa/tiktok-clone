@@ -1,4 +1,6 @@
 import classname from 'classnames/bind';
+import PropTypes from 'prop-types';
+
 import 'tippy.js/dist/tippy.css';
 import styles from './Menu.module.scss';
 
@@ -15,5 +17,8 @@ function MenuItem({ data, onClick }) {
     </Button>
   );
 }
-
+MenuItem.propTypes = {
+  data: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+};
 export default MenuItem;
