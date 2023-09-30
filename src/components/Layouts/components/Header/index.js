@@ -1,5 +1,6 @@
 //
 
+import { Link } from 'react-router-dom';
 import classname from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -7,6 +8,9 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import images from '@/assets/images';
+// config
+import routes from '@/config/routes';
+
 import {
   faEllipsisVertical,
   faEarthAsia,
@@ -79,7 +83,7 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: 'View profile',
-      to: '@vana',
+      to: '/profile/@vana',
     },
     {
       icon: <FontAwesomeIcon icon={faDonate} />,
@@ -101,7 +105,9 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         <div className={cx('logo')}>
-          <img src={images.logo} alt="TópTóp" />
+          <Link to={routes.home} className={cx('logo-link')}>
+            <img src={images.logo} alt="TópTóp" />
+          </Link>
         </div>
         {/* Search */}
         <Search />

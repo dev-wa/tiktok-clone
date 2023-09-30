@@ -11,6 +11,7 @@
   --black: #000;
   --text-color: #333;
   --white-color: #fff;
+  --font-family: 'IBM Plex Sans';
 }
 * {
   margin: 0;
@@ -21,7 +22,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: 'IBM Plex Sans';
+  font-family: var(--font-family);
   font-size: 1.6rem;
   line-height: 1.5rem;
   text-rendering: optimizeSpeed;
@@ -33,11 +34,13 @@ input,
 [tabindex] {
   outline: none;
   border: none;
+  font-family: var(--font-family);
 }
 
 a[href] {
   color: var(--text-color);
   text-decoration: none;
+  font-family: var(--font-family);
 }
 
 //Custom tippy tooltip

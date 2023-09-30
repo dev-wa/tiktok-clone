@@ -47,6 +47,9 @@ function Search() {
   const handleHideResult = () => {
     setShowResult(false);
   };
+  const handleSubmit = () => {
+    console.log('handleSubmit');
+  };
   return (
     <HeadLessTippy
       visible={showResult && searchResult.length > 0}
@@ -80,7 +83,7 @@ function Search() {
         )}
         {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-        <button className={cx('search-btn')}>
+        <button className={cx('search-btn')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
           <SearchIcon className={cx('search-icon')} />
         </button>
       </div>
