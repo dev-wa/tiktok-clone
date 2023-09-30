@@ -1,7 +1,7 @@
 //
 
 import { Link } from 'react-router-dom';
-import classnames from 'classnames/bind';
+import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Tippy from '@tippyjs/react';
@@ -27,7 +27,7 @@ import { InboxIcon, MessageIcon, UploadIcon } from '@/components/Icons';
 import Image from '@/components/Image/Image';
 import Search from '../Search';
 
-const cx = classnames.bind(styles);
+const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
   {

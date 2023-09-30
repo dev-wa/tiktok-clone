@@ -1,4 +1,4 @@
-import classname from 'classnames/bind';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 
 import 'tippy.js/dist/tippy.css';
@@ -6,7 +6,7 @@ import styles from './Menu.module.scss';
 
 import Button from '@/components/Button/Button';
 
-const cx = classname.bind(styles);
+const cx = classNames.bind(styles);
 function MenuItem({ data, onClick }) {
   const classes = cx('menu-item', {
     separate: data.separate,

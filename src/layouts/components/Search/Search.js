@@ -1,42 +1,44 @@
 import { useEffect, useRef, useState } from 'react';
-import classname from 'classnames/bind';
+import classNames from 'classnames/bind';
 import HeadLessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import styles from './Search.module.scss';
 
 import { faTimesCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Wrapper as PopperWrapper } from '@/components/Popper';
-import AccountItem from '@/components/AccountItem';
+
 import { SearchIcon } from '@/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDebounce } from '@/hooks';
 import * as api from '@/apis/searchApi';
+import SearchResult from './SearchResult';
 
-const cx = classname.bind(styles);
+const cx = classNames.bind(styles);
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const refValue = useRef();
 
-  const debounced = useDebounce(searchValue, 500);
+  const debouncedValue = useDebounce(searchValue, 500);
 
   useEffect(() => {
-    if (!debounced) {
+    if (!debouncedValue) {
       setSearchResult([]);
       return;
     }
 
     const fetchApi = async () => {
       setLoading(true);
-      const result = await api.searchApi(debounced);
+      const result = await api.searchApi(debouncedValue);
       setSearchResult(result);
       setLoading(false);
     };
     fetchApi();
-  }, [debounced]);
+  }, [debouncedValue]);
 
   const handleClearValue = () => {
     setSearchValue('');
@@ -60,9 +62,7 @@ function Search() {
           <div className={cx('search-result')} tabIndex="-1" {...attrs}>
             <PopperWrapper>
               <h4 className={cx('search-title')}>Accounts</h4>
-              {searchResult.map((item, key) => (
-                <AccountItem key={key} data={item} />
-              ))}
+              <SearchResult data={searchResult} />
             </PopperWrapper>
           </div>
         )}
