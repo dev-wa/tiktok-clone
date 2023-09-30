@@ -1,4 +1,5 @@
 function Profile() {
+  console.log('Profile');
   return <h2>Profile page</h2>;
 }
 
