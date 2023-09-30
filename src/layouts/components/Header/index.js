@@ -1,7 +1,7 @@
 //
 
 import { Link } from 'react-router-dom';
-import classname from 'classnames/bind';
+import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Tippy from '@tippyjs/react';
@@ -9,7 +9,7 @@ import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import images from '@/assets/images';
 // config
-import routes from '@/config/routes';
+import config from '@/config';
 
 import {
   faEllipsisVertical,
@@ -27,27 +27,27 @@ import { InboxIcon, MessageIcon, UploadIcon } from '@/components/Icons';
 import Image from '@/components/Image';
 import Search from '../Search';
 
-const cx = classname.bind(styles);
+const cx = classnames.bind(styles);
 
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
     children: {
-      title: 'Languege',
+      title: 'Language',
       data: [
         {
-          type: 'languege',
+          type: 'language',
           code: 'en',
           title: 'English',
         },
         {
-          type: 'languege',
+          type: 'language',
           code: 'vi',
           title: 'Tiếng việt',
         },
         {
-          type: 'languege',
+          type: 'language',
           code: 'ja',
           title: 'Japan',
         },
@@ -70,7 +70,7 @@ function Header() {
   // Handle
   const handleMenuChange = (menu) => {
     switch (menu.type) {
-      case 'languege':
+      case 'language':
         console.log(menu);
         break;
 
@@ -105,7 +105,7 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         <div className={cx('logo')}>
-          <Link to={routes.home} className={cx('logo-link')}>
+          <Link to={config.routes.home} className={cx('logo-link')}>
             <img src={images.logo} alt="TópTóp" />
           </Link>
         </div>

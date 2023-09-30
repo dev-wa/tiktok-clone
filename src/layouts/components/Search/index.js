@@ -10,7 +10,7 @@ import AccountItem from '@/components/AccountItem';
 import { SearchIcon } from '@/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDebounce } from '@/hooks';
-import * as api from '@/apiServices/searchApi';
+import * as api from '@/apis/searchApi';
 
 const cx = classname.bind(styles);
 
@@ -28,7 +28,7 @@ function Search() {
       setSearchResult([]);
       return;
     }
-    console.log(process.env.API_URL);
+
     const fetchApi = async () => {
       setLoading(true);
       const result = await api.searchApi(debounced);
